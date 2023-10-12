@@ -2,3 +2,6 @@ From today doing I am starting this project and progress it daily until it finis
 
 Authentication - Done 
 27 min 
+
+1. Logo should be edited at assets and Topbar.tsx
+2. Change Favicon
