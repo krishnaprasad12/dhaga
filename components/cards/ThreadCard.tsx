@@ -67,7 +67,7 @@ const ThreadCard = ({
                             <div className="flex gap-3.5">
                                 <Image src="/assets/heart-gray.svg" alt="heart" width={24} height={24} className="cursor-pointer object-contain"/>
                                 <Link href={'/thread/${id}'}>
-                                    <Image src="/assets/heart-gray.svg" alt="reply" width={24} height={24} className="cursor-pointer object-contain"/>
+                                    <Image src="/assets/reply.svg" alt="reply" width={24} height={24} className="cursor-pointer object-contain"/>
                                 </Link>
                                 
                                 <Image src="/assets/repost.svg" alt="heart" width={24} height={24} className="cursor-pointer object-contain"/>

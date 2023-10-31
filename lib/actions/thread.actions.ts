@@ -39,7 +39,8 @@ export async function fetchPosts(pageNumber = 1,pageSize = 20){
 
     const skipAmount = (pageNumber-1)*pageSize;
 
-    const postsQuery = Thread.find({parentId: {$in: [null,undefined]}}).sort({createdAt:"desc"}).skip(skipAmount).limit(pageSize).populate({path: 'author',model: User}).populate({
+    const postsQuery = Thread.find({parentId: {$in: [null,undefined]}})
+.sort({createdAt:"desc"}).skip(skipAmount).limit(pageSize).populate({path: 'author',model: User}).populate({
         path: 'children',
         populate: {
             path: 'author',
@@ -58,13 +59,13 @@ export async function fetchPosts(pageNumber = 1,pageSize = 20){
 export async function fetchThreadById(id: string){
     connectToDB();
     try {
-        const thread = await Thread.findById(id).populate({path: 'author',model: User,select: "_id id name image"}).populate({
+        const thread = await Thread.findById(id).populate({path: 'author',model:User,select: "_id id name image"}).populate({
             path: 'children',
             populate: [
                 {
                     path: 'author',
                     model: User,
-                    select: "_id id name paretId image"
+                    select: "_id id name parentId image"
                 },
                 {
                     path: 'children',
@@ -72,13 +73,14 @@ export async function fetchThreadById(id: string){
                     populate: {
                         path: 'author',
                         model: User,
-                        select: "_id id name paretId image"
+                        select: "_id id name parentId image"
                     }
                 }
             ]
         }).exec();
+
         return thread;
     } catch (error: any) {
-        throw new Error('Error fetching thread by id: ${error.message} ')
+        console.log(error.message);
     }
 }
